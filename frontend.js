@@ -27,6 +27,3 @@
 //     console.log(`App is listening on PORT ${PORT}`);
 // });
 
-$("#resButton").on("click", function () {
-    window.location.assign("restaurant.html");
-})

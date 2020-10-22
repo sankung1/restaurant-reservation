@@ -34,8 +34,16 @@ const waitingList = []
 app.get("/", (req, res)=>{
     res.sendFile(path.join(__dirname, "home.html"))
 })
+app.get("/tables", (req, res) => {
+    res.sendFile(path.join(__dirname, "table.html"))
+})
+app.get("/reserve", (req, res) => {
+    res.sendFile(path.join(__dirname, "reserve.html"))
+})
 
-app.get("/api/makeReservation/:makeRes", )
+app.get("/api/makeReservation/:makeRes", (req, res)=>{
+
+})
 
 
 app.listen(PORT, () =>{
