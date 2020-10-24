@@ -23,37 +23,59 @@
             <h2>Book your seat before they're all gone!</h2>
         </p>
         <p class="lead">
-            <a id="homeButton" class=" btn btn-success btn-lg " href="home.html" ole="button "> Home</a>
-            <a id="tableButton" class=" btn btn-primary btn-lg " href="tables.html" role="button "> View Tables</a>
-            <a id="resButton" class=" btn btn-danger btn-lg " href="reserve.html" role="button "> Make Reservation</a>
+            <a id="homeButton" class=" btn btn-success btn-lg " href="/" ole="button "> Home</a>
+            <a id="tableButton" class=" btn btn-primary btn-lg " href="/tables" role="button "> View Tables</a>
+            <a id="resButton" class=" btn btn-danger btn-lg " href="/reserve" role="button "> Make Reservation</a>
         </p>
     </div>
 
     <form>
         <div class="form-group">
             <label for="formGroupExampleInput">Name</label>
-            <input type="text" class="form-control" id="formGroupExampleInput">
+            <input type="text" class="form-control" id="name">
         </div>
         <div class="form-group">
             <label for="formGroupExampleInput2">Phone Number</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2">
+            <input type="text" class="form-control" id="phoneNum">
         </div>
         <div class="form-group">
             <label for="formGroupExampleInput2">Email Address</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2">
+            <input type="text" class="form-control" id="email">
         </div>
         <div class="form-group">
             <label for="formGroupExampleInput2">Wait Id Number</label>
-            <input type="text" class="form-control" id="formGroupExampleInput2">
+            <input type="text" class="form-control" id="uniqueID">
         </div>
-        <button type="button" class="btn btn-secondary">Submit</button>
+        <button type="button" class="btn btn-secondary" id="add-btn">Submit</button>
     </form>
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        // Question: What does this code do?
+        $("#add-btn").on("click", function(event) {
+            event.preventDefault();
+            var newTable = {
+                name: $("#name").val().trim(),
+                number: $("#phoneNum").val().trim(),
+                email: $("#email").val().trim(),
+                uniqueID: $("#uniqueID").val().trim()
+            };
+
+            // Question: What does this code do??
+            $.post("/api/makeReservation", newTable)
+                .then(function(data) {
+                    console.log("reserve.html", data);
+                    alert("Adding reservation...");
+                });
+        });
+    </script>
 </body>
 
 </html>
